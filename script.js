@@ -58,38 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
     avatarFallback.classList.remove('hidden');
   });
 
-  // Randomize device positions on canvas
-  function randomizeDevices() {
-    const canvas = document.querySelector('.devices-canvas');
-    if (!canvas) return;
-
-    const items = canvas.querySelectorAll('.device-item');
-
-    // Two distinct diagonal sectors so devices don't completely overlap
-    const sectors = [
-      { minX: 0.05, maxX: 0.40, minY: 0.08, maxY: 0.45 },
-      { minX: 0.42, maxX: 0.70, minY: 0.40, maxY: 0.68 },
-    ];
-
-    // Shuffle sectors randomly
-    if (Math.random() > 0.5) {
-      sectors.reverse();
-    }
-
-    items.forEach((item, index) => {
-      const s = sectors[index % sectors.length];
-      const leftPercent = s.minX + Math.random() * (s.maxX - s.minX);
-      const topPercent = s.minY + Math.random() * (s.maxY - s.minY);
-      const rot = (Math.random() * 24 - 12).toFixed(1); // -12deg to +12deg
-
-      item.style.left = `${(leftPercent * 100).toFixed(1)}%`;
-      item.style.top = `${(topPercent * 100).toFixed(1)}%`;
-      item.style.setProperty('--rot', `${rot}deg`);
-    });
-  }
-
-  randomizeDevices();
-
   // Device tooltip follower
   const tooltip = document.createElement('div');
   tooltip.className = 'device-tooltip';

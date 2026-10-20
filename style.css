@@ -113,13 +113,6 @@ body {
   }
 }
 
-@media (max-width: 860px) {
-  .layout-wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
 /* Card Container */
 .card-container {
   width: 100%;
@@ -134,15 +127,40 @@ body {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.main-profile-card {
+  order: 2;
+}
+
+.projects-window {
+  order: 1;
+  position: relative;
+}
+
+.devices-window {
+  order: 3;
+}
+
 @media (max-width: 860px) {
+  .layout-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .card-container {
     max-width: 440px;
   }
-}
 
-/* Projects Window */
-.projects-window {
-  position: relative;
+  .main-profile-card {
+    order: 1;
+  }
+
+  .projects-window {
+    order: 2;
+  }
+
+  .devices-window {
+    order: 3;
+  }
 }
 
 .projects-header {
@@ -183,23 +201,6 @@ body {
   padding: 0 4px;
 }
 
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding: 0 4px;
-}
-
-.project-tag {
-  font-size: 11px;
-  font-weight: 500;
-  padding: 3px 8px;
-  border-radius: 8px;
-  background-color: var(--md-sys-color-surface-container-high);
-  color: var(--md-sys-color-on-surface-variant);
-  border: 1px solid var(--md-sys-color-outline-variant);
-}
-
 /* Devices Window */
 .devices-window {
   position: relative;
@@ -225,14 +226,23 @@ body {
   border-radius: 20px;
   border: 1px solid var(--md-sys-color-outline-variant);
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
 }
 
 .device-item {
-  position: absolute;
+  position: relative;
+  left: auto !important;
+  top: auto !important;
   cursor: pointer;
   transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), z-index 0.25s ease;
   user-select: none;
-  transform: rotate(var(--rot, 0deg));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: none;
 }
 
 .device-img {
@@ -244,16 +254,36 @@ body {
   pointer-events: none;
 }
 
+.device-thinkpad .device-img {
+  animation: minecraft-bob 2.8s ease-in-out infinite;
+}
+
+.device-phone .device-img {
+  animation: minecraft-bob 2.8s ease-in-out infinite;
+  animation-delay: -1.4s;
+}
+
+@keyframes minecraft-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .device-thinkpad {
   width: 175px;
+  max-width: 58%;
 }
 
 .device-phone {
-  width: 90px;
+  width: 80px;
+  max-width: 28%;
 }
 
 .device-item:hover {
-  transform: scale(1.1) rotate(0deg) !important;
+  transform: scale(1.08) !important;
   z-index: 10;
 }
 
