@@ -148,6 +148,7 @@ body {
 
   .card-container {
     max-width: 440px;
+    flex: none;
   }
 
   .main-profile-card {
@@ -160,6 +161,7 @@ body {
 
   .devices-window {
     order: 3;
+    min-height: auto;
   }
 }
 
@@ -204,7 +206,6 @@ body {
 /* Devices Window */
 .devices-window {
   position: relative;
-  min-height: 400px;
 }
 
 .devices-header {
